@@ -83,34 +83,37 @@
     let currentAudio = null;
 
     document.addEventListener(
-      'musickitloaded',
-      async () => {
+  'musickitloaded',
+  async function () {
 
-        try {
+    try {
 
-          await MusicKit.configure({
+      await MusicKit.configure({
 
-            developerToken:
-              'eyJhbGciOiJFUzI1NiIsImtpZCI6IldHWDc2NzRLMkYifQ.eyJpc3MiOiI1WVY0WDNSU0w3IiwiaWF0IjoxNzc5ODU3MDg4LCJleHAiOjE3ODUwOTg2ODh9.CxOHWID9msui-aBed2RUszM9lppUi9V9-DlK_bUASEQ7bGziakF_GYP26lNZSGxQQpe74tlsagLHZkhCBtvlcw',
+        developerToken:
+          'eyJhbGciOiJFUzI1NiIsImtpZCI6IldHWDc2NzRLMkYifQ.eyJpc3MiOiI1WVY0WDNSU0w3IiwiaWF0IjoxNzc5ODU3MDg4LCJleHAiOjE3ODUwOTg2ODh9.CxOHWID9msui-aBed2RUszM9lppUi9V9-DlK_bUASEQ7bGziakF_GYP26lNZSGxQQpe74tlsagLHZkhCBtvlcw',
 
-            app: {
-              name: 'Apple Music Demo',
-              build: '1.0'
-            }
-          });
-
-          music = MusicKit.getInstance();
-
-          console.log('MusicKit 初始化成功');
-
-        } catch (err) {
-
-          console.error(err);
-
-          alert('developerToken 无效');
+        app: {
+          name: 'Apple Music Demo',
+          build: '1.0'
         }
-      }
-    );
+      });
+
+      music = MusicKit.getInstance();
+
+      console.log('MusicKit 初始化成功');
+
+    } catch (err) {
+
+      console.error(err);
+
+      alert(
+        'MusicKit 初始化失败: ' +
+        err.message
+      );
+    }
+  }
+);
 
     async function login() {
 
