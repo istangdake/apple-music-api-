@@ -1,0 +1,41 @@
+<script>
+
+  let music;
+
+  document.addEventListener(
+    'musickitloaded',
+    async () => {
+
+      console.log('MusicKit loaded');
+
+      try {
+
+        MusicKit.configure({
+
+          developerToken:
+            '你的token',
+
+          app: {
+            name: 'Apple Music Demo',
+            build: '1.0'
+          }
+        });
+
+        console.log('configure success');
+
+        music = MusicKit.getInstance();
+
+        console.log('music instance:', music);
+
+      } catch (err) {
+
+        console.error('完整错误如下:');
+
+        console.error(err);
+
+        alert(err.message);
+      }
+    }
+  );
+
+</script>
