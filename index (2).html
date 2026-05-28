@@ -192,9 +192,6 @@
     song.attributes.artwork.url
       .replace('{w}', '200')
       .replace('{h}', '200');
-
-  const previewUrl =
-    song.attributes.previews?.[0]?.url || '';
   
   const songId = song.id;
 
@@ -247,18 +244,13 @@
   console.error(err);
 
   alert('搜索失败');
+ }
 }
-}
+
 
 async function playSong(songId) {
 
   try {
-
-    // 如果已有歌曲在播放
-    if (music.isPlaying) {
-
-      music.stop();
-    }
 
     // 设置播放队列
     await music.setQueue({
