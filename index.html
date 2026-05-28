@@ -336,6 +336,39 @@ async function playSong(
     alert('播放失败');
   }
 }
+document
+  .getElementById('play-pause-btn')
+  .addEventListener(
+    'click',
+    async () => {
+
+      if (!music) return;
+
+      try {
+
+        if (music.isPlaying) {
+
+          await music.pause();
+
+          document.getElementById(
+            'play-pause-btn'
+          ).innerText = '▶';
+
+        } else {
+
+          await music.play();
+
+          document.getElementById(
+            'play-pause-btn'
+          ).innerText = '⏸';
+        }
+
+      } catch (err) {
+
+        console.error(err);
+      }
+    }
+  );   
 
   </script>
    <div id="player-bar">
