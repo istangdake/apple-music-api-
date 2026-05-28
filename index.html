@@ -334,30 +334,7 @@ function playSong(previewUrl, songName, artistName) {
     alert('播放失败');
   }
 }
- 
-document
-  .getElementById('play-pause-btn')
-  .addEventListener('click', () => {
 
-    if (!currentAudio) return;
-
-    if (currentAudio.paused) {
-
-      currentAudio.play();
-
-      document.getElementById(
-        'play-pause-btn'
-      ).innerText = '⏸';
-
-    } else {
-
-      currentAudio.pause();
-
-      document.getElementById(
-        'play-pause-btn'
-      ).innerText = '▶';
-    }
-  }); 
 
   </script>
    <div id="player-bar">
@@ -365,10 +342,6 @@ document
   <div id="now-playing">
     未播放
   </div>
-
-  <button id="play-pause-btn">
-    ⏸
-  </button>
 
 </div>
 
