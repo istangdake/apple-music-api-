@@ -299,31 +299,28 @@
 }
 }
 
-async function playSong(
-  songId,
-  songName,
-  artistName
-) {
+function playSong(previewUrl, songName, artistName) {
 
   try {
 
-    if (music.isPlaying) {
+    // 如果已经有歌在播放
+    if (currentAudio) {
 
-      await music.stop();
+      currentAudio.pause();
     }
 
-    await music.setQueue({
-      songs: [songId]
-    });
+    // 创建新的 audio
+    currentAudio = new Audio(previewUrl);
 
-    await music.play();
+    currentAudio.play();
 
+    // 更新底部播放器文字
     document.getElementById(
       'now-playing'
     ).innerText =
-
       `${songName} - ${artistName}`;
 
+    // 更新按钮
     document.getElementById(
       'play-pause-btn'
     ).innerText = '⏸';
@@ -337,7 +334,7 @@ async function playSong(
     alert('播放失败');
   }
 }
-
+ 
 document
   .getElementById('play-pause-btn')
   .addEventListener('click', () => {
