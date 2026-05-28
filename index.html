@@ -130,6 +130,7 @@
 
     let music;
     let currentAudio = null;
+    let isPaused = false;
 
     document.addEventListener(
   'musickitloaded',
@@ -336,6 +337,7 @@ async function playSong(
     alert('播放失败');
   }
 }
+
 document
   .getElementById('play-pause-btn')
   .addEventListener(
@@ -346,9 +348,11 @@ document
 
       try {
 
-        if (music.isPlaying) {
+        if (!isPaused) {
 
           await music.pause();
+
+          isPaused = true;
 
           document.getElementById(
             'play-pause-btn'
@@ -357,6 +361,8 @@ document
         } else {
 
           await music.play();
+
+          isPaused = false;
 
           document.getElementById(
             'play-pause-btn'
@@ -368,7 +374,7 @@ document
         console.error(err);
       }
     }
-  );   
+  );    
 
   </script>
    <div id="player-bar">
