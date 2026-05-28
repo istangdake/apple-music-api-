@@ -8,7 +8,7 @@
 
   <script
   crossorigin
-  src="https://js-cdn.music.apple.com/musickit/v1/musickit.js">
+  src="https://js-cdn.music.apple.com/musickit/v3/musickit.js">
 </script>
 
   <style>
@@ -82,46 +82,38 @@
 
   <script>
 
-const developerToken =
-'eyJhbGciOiJFUzI1NiIsImtpZCI6IldHWDc2NzRLMkYifQ.eyJpc3MiOiI1WVY0WDNSU0w3IiwiaWF0IjoxNzc5ODU3MDg4LCJleHAiOjE3ODUwOTg2ODh9.CxOHWID9msui-aBed2RUszM9lppUi9V9-DlK_bUASEQ7bGziakF_GYP26lNZSGxQQpe74tlsagLHZkhCBtvlcw'
-;
+    let music;
+    let currentAudio = null;
 
-let music;
-let currentAudio = null;
+    document.addEventListener(
+      'musickitloaded',
+      async () => {
 
-document.addEventListener(
-  'musickitloaded',
-  async function () {
+        try {
 
-    try {
+          await MusicKit.configure({
 
-      await MusicKit.configure({
+            developerToken:
+              'eyJhbGciOiJFUzI1NiIsImtpZCI6IldHWDc2NzRLMkYifQ.eyJpc3MiOiI1WVY0WDNSU0w3IiwiaWF0IjoxNzc5ODU3MDg4LCJleHAiOjE3ODUwOTg2ODh9.CxOHWID9msui-aBed2RUszM9lppUi9V9-DlK_bUASEQ7bGziakF_GYP26lNZSGxQQpe74tlsagLHZkhCBtvlcw',
 
-        developerToken: developerToken,
+            app: {
+              name: 'Apple Music Demo',
+              build: '1.0'
+            }
+          });
 
-        app: {
-          name: 'Apple Music Demo',
-          build: '1.0'
+          music = MusicKit.getInstance();
+
+          console.log('MusicKit 初始化成功');
+
+        } catch (err) {
+
+          console.error(err);
+
+          alert('developerToken 无效');
         }
-      });
-
-      music = MusicKit.getInstance();
-
-      console.log(
-        'MusicKit 初始化成功',
-        music
-      );
-
-    } catch (err) {
-
-      console.error(err);
-
-      alert(
-        'MusicKit 初始化失败'
-      );
-    }
-  }
-);
+      }
+    );
 
     async function login() {
 
