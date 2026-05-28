@@ -235,7 +235,7 @@
 
   btn.addEventListener('click', () => {
 
-    playSong(previewUrl);
+    playSong(songId);
 
   });
 
@@ -250,41 +250,32 @@
 }
 }
 
-function playSong(previewUrl) {
+async function playSong(songId) {
 
-  console.log(previewUrl);
+  try {
 
-  if (!previewUrl) {
+    // 如果已有歌曲在播放
+    if (music.isPlaying) {
 
-    alert('这首歌没有试听音频');
+      music.stop();
+    }
 
-    return;
-  }
-
-  // 如果已有歌曲在播放
-  if (currentAudio) {
-
-    currentAudio.pause();
-
-    currentAudio.currentTime = 0;
-  }
-
-  // 创建新的音频
-  currentAudio =
-    new Audio(previewUrl);
-
-  currentAudio.play()
-    .then(() => {
-
-      console.log('播放成功');
-
-    })
-    .catch(err => {
-
-      console.error(err);
-
-      alert('播放失败');
+    // 设置播放队列
+    await music.setQueue({
+      song: songId
     });
+
+    // 播放完整版
+    await music.play();
+
+    console.log('开始播放完整版');
+
+  } catch (err) {
+
+    console.error(err);
+
+    alert('完整版播放失败');
+  }
 }
 
 
