@@ -254,27 +254,34 @@ async function playSong(songId) {
 
   try {
 
-    // 如果已有歌曲在播放
+    console.log("准备播放:", songId);
+
+    // 停止当前歌曲
     if (music.isPlaying) {
 
-      music.stop();
+      await music.stop();
     }
 
-    // 设置播放队列
+    // 正确写法
     await music.setQueue({
-      song: songId
+      songs: [songId]
     });
 
-    // 播放完整版
+    console.log("队列设置成功");
+
+    // 播放
     await music.play();
 
-    console.log('开始播放完整版');
+    console.log("开始播放完整版");
 
   } catch (err) {
 
     console.error(err);
 
-    alert('完整版播放失败');
+    alert(
+      '完整版播放失败: ' +
+      err.message
+    );
   }
 }
 
