@@ -281,7 +281,9 @@
 
   btn.addEventListener('click', () => {
 
-    playSong(songId);
+    playSong(songId,
+            song.attributes.name,
+            song.attributes.artistName);
 
   });
 
@@ -298,8 +300,8 @@
 
 async function playSong(
   songId,
-  song.attributes.name,
-  song.attributes.artistName
+  songName,
+  artistName
 ) {
 
   try {
