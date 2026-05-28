@@ -340,28 +340,27 @@ async function playSong(
 
 document
   .getElementById('play-pause-btn')
-  .addEventListener('click', async () => {
+  .addEventListener('click', () => {
 
-    if (!music) return;
+    if (!currentAudio) return;
 
-    if (music.isPlaying) {
+    if (currentAudio.paused) {
 
-      await music.pause();
-
-      document.getElementById(
-        'play-pause-btn'
-      ).innerText = '▶';
-
-    } else {
-
-      await music.play();
+      currentAudio.play();
 
       document.getElementById(
         'play-pause-btn'
       ).innerText = '⏸';
 
+    } else {
+
+      currentAudio.pause();
+
+      document.getElementById(
+        'play-pause-btn'
+      ).innerText = '▶';
     }
-});    
+  }); 
 
   </script>
    <div id="player-bar">
